@@ -804,6 +804,7 @@ export type ManualMemoDependency = {
         kind: 'NamedLocal';
         value: Place;
         constant: boolean;
+        isEffectEvent: boolean;
       }
     | {kind: 'Global'; identifierName: string};
   path: DependencyPath;

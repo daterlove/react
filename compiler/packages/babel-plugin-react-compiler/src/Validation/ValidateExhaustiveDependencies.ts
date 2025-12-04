@@ -25,6 +25,7 @@ import {
   Identifier,
   IdentifierId,
   InstructionKind,
+  isEffectEventFunctionType,
   isPrimitiveType,
   isStableType,
   isSubPath,
@@ -180,6 +181,7 @@ export function validateExhaustiveDependencies(
                   loc: dep.loc,
                   reactive: reactive.has(dep.identifier.id),
                 },
+                isEffectEvent: isEffectEventFunctionType(dep.identifier),
               },
               path: dep.path,
               loc: dep.loc,
@@ -339,6 +341,23 @@ function validateDependencies(
     ) {
       continue;
     }
+    // if (isEffectEventFunctionType(inferredDependency.identifier)) {
+    //   extra.push({
+    //     ...inferredDependency,
+    //     root: {
+    //       kind: 'NamedLocal',
+    //       isEffectEvent: true,
+    //       constant: false,
+    //       value: {
+    //         kind: 'Identifier',
+    //         identifier: inferredDependency.identifier,
+    //         effect: Effect.Read,
+    //         reactive: false,
+    //         loc: inferredDependency.loc,
+    //       },
+    //     },
+    //   });
+    // }
     missing.push(inferredDependency);
   }
 

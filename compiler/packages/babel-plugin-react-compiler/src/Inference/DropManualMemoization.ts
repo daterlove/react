@@ -95,6 +95,7 @@ export function collectMaybeMemoDependencies(
             kind: 'NamedLocal',
             value: {...value.place},
             constant: false,
+            isEffectEvent: false,
           },
           path: [],
           loc: value.place.loc,
